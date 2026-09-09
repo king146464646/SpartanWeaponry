@@ -11,20 +11,17 @@ import org.xiyu.spartanweaponryunofficial.api.OilEffects;
 import org.xiyu.spartanweaponryunofficial.api.oil.OilEffect;
 import org.xiyu.spartanweaponryunofficial.init.ModItems;
 import org.xiyu.spartanweaponryunofficial.util.OilHelper;
-import org.xiyu.spartanweaponryunofficial.util.WeaponOilConfig;
 
 public class OilBrewingRecipe implements IBrewingRecipe {
     private static final List<OilMix> VALID_MIXES = new ArrayList<>();
 
     @Override
     public boolean isInput(ItemStack input) {
-        return WeaponOilConfig.areRecipesEnabled() && input.is(ModItems.WEAPON_OIL.get());
+        return input.is(ModItems.WEAPON_OIL.get());
     }
 
     @Override
     public boolean isIngredient(@NotNull ItemStack ingredient) {
-        if (!WeaponOilConfig.areRecipesEnabled()) return false;
-
         for (OilMix mix : VALID_MIXES) {
             if (mix.brewingIngredient.test(ingredient)) return true;
         }

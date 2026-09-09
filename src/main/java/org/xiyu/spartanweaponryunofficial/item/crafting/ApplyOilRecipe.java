@@ -17,7 +17,6 @@ import org.xiyu.spartanweaponryunofficial.init.ModCapabilities;
 import org.xiyu.spartanweaponryunofficial.init.ModItems;
 import org.xiyu.spartanweaponryunofficial.init.ModRecipeSerializers;
 import org.xiyu.spartanweaponryunofficial.util.OilHelper;
-import org.xiyu.spartanweaponryunofficial.util.WeaponOilConfig;
 
 public class ApplyOilRecipe extends CustomRecipe {
     public ApplyOilRecipe(CraftingBookCategory craftingBookCategoryIn) {
@@ -26,8 +25,6 @@ public class ApplyOilRecipe extends CustomRecipe {
 
     @Override
     public boolean matches(CraftingInput containerIn, @NotNull Level levelIn) {
-        if (!WeaponOilConfig.isEnabled()) return false;
-
         boolean foundOil = false, foundWeapon = false;
 
         for (int i = 0; i < containerIn.width(); i++) {
@@ -55,8 +52,6 @@ public class ApplyOilRecipe extends CustomRecipe {
     @Override
     public @NotNull ItemStack assemble(
             CraftingInput containerIn, HolderLookup.@NotNull Provider registryAccessIn) {
-        if (!WeaponOilConfig.isEnabled()) return ItemStack.EMPTY;
-
         ItemStack oilStack = ItemStack.EMPTY, weaponStack = ItemStack.EMPTY;
 
         for (int i = 0; i < containerIn.width(); i++) {

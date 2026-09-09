@@ -13,7 +13,6 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
 import org.xiyu.spartanweaponryunofficial.api.OilEffects;
 import org.xiyu.spartanweaponryunofficial.util.OilHelper;
-import org.xiyu.spartanweaponryunofficial.util.WeaponOilConfig;
 
 public class ModCreativeTabs {
     public static final DeferredRegister<CreativeModeTab> REGISTRY =
@@ -266,8 +265,6 @@ public class ModCreativeTabs {
     }
 
     private static void makeWeaponOilVariants(CreativeModeTab.Output output) {
-        if (!WeaponOilConfig.isEnabled()) return;
-
         OilEffects.REGISTRY.getEntries().stream()
                 .filter((oil) -> oil.get() != OilEffects.POTION.get())
                 .forEach((oil) -> output.accept(OilHelper.makeOilStack(oil.get())));

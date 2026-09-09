@@ -1356,7 +1356,6 @@
 	"config.spartan_weaponry_unofficial.traits.armor_pierce.percentage": "穿甲百分比",
 	"config.spartan_weaponry_unofficial.traits.quick_strike.hurt_resistance_ticks": "迅击受击无敌帧",
 	"config.spartan_weaponry_unofficial.traits.decapitate.skull_drop_percentage": "斩首头颅掉落概率",
-	"config.spartan_weaponry_unofficial.enable_weapon_oil": "启用武器油系统",
 	"config.spartan_weaponry_unofficial.disable_oil_recipes": "禁用油配方",
 	"config.spartan_weaponry_unofficial.oil_uses_normal": "油使用次数（普通）",
 	"config.spartan_weaponry_unofficial.oil_uses_long": "油使用次数（长效）",

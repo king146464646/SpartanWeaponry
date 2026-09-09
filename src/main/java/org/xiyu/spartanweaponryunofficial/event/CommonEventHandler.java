@@ -160,7 +160,7 @@ public class CommonEventHandler {
                 dmgDealt = 1.0f;
 
             // Apply any valid oil effects
-            if (WeaponOilConfig.isEnabled() && attackerStack.is(ModItemTags.OILABLE_WEAPONS)) {
+            if (attackerStack.is(ModItemTags.OILABLE_WEAPONS)) {
                 IOilHandler oilHandler =
                         attackerStack.getCapability(ModCapabilities.OIL_CAPABILITY);
                 if (oilHandler != null && oilHandler.isOiled()) {
@@ -826,8 +826,6 @@ public class CommonEventHandler {
     /** Trigger Oil brewing Advancement when appropriate */
     @SubscribeEvent
     public static void onBrewPotion(PlayerBrewedPotionEvent ev) {
-        if (!WeaponOilConfig.isEnabled()) return;
-
         ItemStack stack = ev.getStack();
         if (!stack.is(ModItems.WEAPON_OIL.get())
                 || !(ev.getEntity() instanceof ServerPlayer serverPlayer)) return;

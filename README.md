@@ -51,8 +51,6 @@ Install the jar into your `.minecraft/mods` directory with a matching NeoForge
   generic `createWeapon(WeaponItemType, WeaponMaterial)` entry point.
 - Weapon classification metadata for API-created weapons.
 - Standard grouped item tags by weapon type, material, and source namespace.
-- Weapon Oil support is present but disabled by default through
-  `enable_weapon_oil=false`.
 - Data generation helpers for addon item models, recipes, and tags.
 
 ## Documentation

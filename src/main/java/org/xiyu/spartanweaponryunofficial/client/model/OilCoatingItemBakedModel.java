@@ -19,7 +19,6 @@ import org.jetbrains.annotations.NotNull;
 import org.xiyu.spartanweaponryunofficial.capability.IOilHandler;
 import org.xiyu.spartanweaponryunofficial.init.ModCapabilities;
 import org.xiyu.spartanweaponryunofficial.util.Log;
-import org.xiyu.spartanweaponryunofficial.util.WeaponOilConfig;
 
 public class OilCoatingItemBakedModel extends CompositeModel.Baked {
     private final ImmutableList<BakedModel> coatedLayerModels;
@@ -49,10 +48,7 @@ public class OilCoatingItemBakedModel extends CompositeModel.Baked {
     @Override
     public @NotNull List<BakedModel> getRenderPasses(ItemStack itemStack, boolean fabulous) {
         IOilHandler handler = itemStack.getCapability(ModCapabilities.OIL_CAPABILITY);
-        return WeaponOilConfig.isEnabled()
-                        && handler != null
-                        && handler.isOiled()
-                        && !this.coatedLayerModels.isEmpty()
+        return handler != null && handler.isOiled() && !this.coatedLayerModels.isEmpty()
                 ? this.coatedLayerModels
                 : super.getRenderPasses(itemStack, fabulous);
     }

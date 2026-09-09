@@ -124,7 +124,7 @@ public class Config {
     public IntValue quickStrikeHurtResistTicks;
 
     // Oil settings
-    public BooleanValue enableWeaponOil, disableOilRecipes;
+    public BooleanValue disableOilRecipes;
     public IntValue oilUsesNormal;
     public IntValue oilUsesLong;
     public DoubleValue oilDamageModifierNormal;
@@ -1000,15 +1000,9 @@ public class Config {
         builder.pop();
 
         builder.push("oil");
-        this.enableWeaponOil =
-                builder.comment(
-                                "Master switch for Weapon Oil. Set to true to enable oil recipes, creative tab oil variants, oil application, combat effects, and client oil displays. Disabled by default for modpack compatibility.|武器油总开关。设为 true 后才会启用油配方、创造标签页油变体、涂油、攻击效果和客户端油显示。默认关闭以便整合包按需启用。")
-                        .translation("config." + ModSpartanWeaponry.ID + ".enable_weapon_oil")
-                        .worldRestart()
-                        .define("enable_weapon_oil", false);
         this.disableOilRecipes =
                 builder.comment(
-                                "Only applies when enable_weapon_oil is true. Set to true to disable oil recipes while leaving the rest of the enabled Weapon Oil mechanic available.|仅在 enable_weapon_oil 为 true 时生效。设为 true 会禁用油配方，但保留已启用的其他武器油机制。")
+                                "Set to true to disable oil recipes while leaving the rest of the enabled Weapon Oil mechanic available.|设为 true 会禁用油配方，但保留已启用的其他武器油机制。")
                         .translation("config." + ModSpartanWeaponry.ID + ".disable_oil_recipes")
                         .worldRestart()
                         .define("disable_oil_recipes", false);
@@ -1254,7 +1248,7 @@ public class Config {
 
         updateDisabledRecipe(
                 TypeDisabledCondition.EXPLOSIVES, INSTANCE.disableRecipesExplosives.get());
-        updateDisabledRecipe(TypeDisabledCondition.OIL, !WeaponOilConfig.areRecipesEnabled());
+        updateDisabledRecipe(TypeDisabledCondition.OIL, INSTANCE.disableOilRecipes.get());
 
         // Update Weapon Traits
         WeaponTraits.DAMAGE_BONUS_CHEST
