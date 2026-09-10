@@ -230,6 +230,8 @@ public class ModItemTagsProvider extends ItemTagsProvider {
                 ItemTags.create(ResourceLocation.parse("minecraft:enchantable/trident"));
         final TagKey<Item> ENCHANTABLE_MINING =
                 ItemTags.create(ResourceLocation.parse("minecraft:enchantable/mining"));
+        final TagKey<Item> ENCHANTABLE_MINING_LOOT =
+                ItemTags.create(ResourceLocation.parse("minecraft:enchantable/mining_loot"));
 
         // Mod-specific enchantable tags for mod enchantments to work at enchanting table
         final TagKey<Item> ENCHANTABLE_THROWING_WEAPON =
@@ -504,8 +506,11 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         // Trident enchantments (Loyalty, Riptide, Channeling, Impaling) - for throwing weapons
         this.tag(ENCHANTABLE_TRIDENT).addTags(ModItemTags.JAVELINS);
 
-        // Mining enchantments (Efficiency, Silk Touch, Fortune) - for battleaxes (axe-like tool)
+        // Mining enchantments (Efficiency) - for battleaxes (axe-like tool)
         this.tag(ENCHANTABLE_MINING).addTag(ModItemTags.BATTLEAXES);
+
+        // Mining loot enchantments (Silk Touch, Fortune) - for battleaxes (axe-like tool)
+        this.tag(ENCHANTABLE_MINING_LOOT).addTag(ModItemTags.BATTLEAXES);
 
         // Mod-specific enchantable tags - for mod's custom enchantments to work at enchanting table
         this.tag(ENCHANTABLE_THROWING_WEAPON).addTag(ModItemTags.THROWING_WEAPONS);
