@@ -9,6 +9,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
@@ -23,8 +24,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.EntityHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
+import org.xiyu.spartanweaponryunofficial.init.ModCriteriaTriggers;
 import org.xiyu.spartanweaponryunofficial.init.ModEnchantments;
 import org.xiyu.spartanweaponryunofficial.init.ModEntities;
 import org.xiyu.spartanweaponryunofficial.init.ModSounds;
@@ -55,6 +58,7 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
     protected boolean affectedByWaterDrag = true;
 
     protected int caughtItems = 0;
+    protected boolean hasBounced = false;
     protected static final Predicate<Entity> ITEMS_AND_XP =
             EntitySelector.NO_SPECTATORS.and(
                     (entity) ->
@@ -309,6 +313,7 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
 
             // Apply this reflection motion, but not without negating and dampening the vector first
             this.setDeltaMovement(reflectVec.scale(-0.75d));
+            this.hasBounced = true;
 
             this.playSound(
                     this.getBounceSound(), 1.0f, 2.2f / this.random.nextFloat() * 0.2f + 0.9f);
@@ -316,6 +321,26 @@ public class BoomerangEntity extends ThrowingWeaponEntity {
             // Do Block collision logic with projectiles (e.g. Set the projectile on fire, etc.)
             if (!blockState.isAir()) blockState.onProjectileHit(level, blockState, hitResult, this);
         } else super.onHitBlock(hitResult);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    protected void onHitEntity(EntityHitResult hitResult) {
+        boolean wasReturning = this.isBoomerangReturning();
+        super.onHitEntity(hitResult);
+
+        Entity entity = hitResult.getEntity();
+        if (entity instanceof LivingEntity livingEntity && livingEntity.isDeadOrDying()) {
+            Entity owner = this.getOwner();
+            if (owner instanceof ServerPlayer serverPlayer) {
+                if (this.hasBounced) {
+                    ModCriteriaTriggers.BOOMERANG_BOUNCE_KILL.get().trigger(serverPlayer);
+                }
+                if (wasReturning) {
+                    ModCriteriaTriggers.BOOMERANG_RETURN_KILL.get().trigger(serverPlayer);
+                }
+            }
+        }
     }
 
     // Used for showing items picked up by the boomerang

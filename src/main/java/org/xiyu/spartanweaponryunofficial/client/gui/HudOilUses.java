@@ -8,7 +8,6 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.Potion;
 import org.joml.Matrix4fStack;
@@ -19,9 +18,6 @@ import org.xiyu.spartanweaponryunofficial.util.ClientConfig;
 import org.xiyu.spartanweaponryunofficial.util.OilHelper;
 
 public class HudOilUses {
-    protected static final ResourceLocation WIDGETS =
-            ResourceLocation.parse("textures/gui/widgets.png");
-
     public static void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
         RenderSystem.assertOnRenderThread();
 
@@ -66,7 +62,6 @@ public class HudOilUses {
 
         RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        RenderSystem.setShaderTexture(0, WIDGETS);
         RenderSystem.enableBlend();
 
         guiGraphics.renderFakeItem(oilStack, offsetX - 17, offsetY);

@@ -16,6 +16,8 @@ import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 import org.xiyu.spartanweaponryunofficial.ModSpartanWeaponry;
+import org.xiyu.spartanweaponryunofficial.advancement.criterion.BoomerangBounceKillTrigger;
+import org.xiyu.spartanweaponryunofficial.advancement.criterion.BoomerangReturnKillTrigger;
 import org.xiyu.spartanweaponryunofficial.advancement.criterion.BrewOilTrigger;
 import org.xiyu.spartanweaponryunofficial.api.tags.ModItemTags;
 import org.xiyu.spartanweaponryunofficial.init.ModItems;
@@ -583,33 +585,76 @@ public class ModAdvancementProvider extends AdvancementProvider {
                             saver,
                             ResourceLocation.fromNamespaceAndPath(ModSpartanWeaponry.ID, "javelin"),
                             existingFileHelper);
+            AdvancementHolder boomerangs =
+                    Advancement.Builder.advancement()
+                            .parent(daggers)
+                            .display(
+                                    ModItems.BOOMERANGS.wood.get(),
+                                    Component.translatable(
+                                            "advancement."
+                                                    + ModSpartanWeaponry.ID
+                                                    + ".craft_boomerang.title"),
+                                    Component.translatable(
+                                            "advancement."
+                                                    + ModSpartanWeaponry.ID
+                                                    + ".craft_boomerang.desc"),
+                                    null,
+                                    AdvancementType.TASK,
+                                    true,
+                                    true,
+                                    false)
+                            .addCriterion(
+                                    "has_boomerang",
+                                    InventoryChangeTrigger.TriggerInstance.hasItems(
+                                            ItemPredicate.Builder.item()
+                                                    .of(ModItemTags.BOOMERANGS)
+                                                    .build()))
+                            .save(
+                                    saver,
+                                    ResourceLocation.fromNamespaceAndPath(
+                                            ModSpartanWeaponry.ID, "boomerang"),
+                                    existingFileHelper);
             Advancement.Builder.advancement()
-                    .parent(daggers)
+                    .parent(boomerangs)
                     .display(
                             ModItems.BOOMERANGS.wood.get(),
                             Component.translatable(
-                                    "advancement."
-                                            + ModSpartanWeaponry.ID
-                                            + ".craft_boomerang.title"),
+                                    "advancement." + ModSpartanWeaponry.ID + ".bounce_kill.title"),
                             Component.translatable(
-                                    "advancement."
-                                            + ModSpartanWeaponry.ID
-                                            + ".craft_boomerang.desc"),
+                                    "advancement." + ModSpartanWeaponry.ID + ".bounce_kill.desc"),
                             null,
                             AdvancementType.TASK,
                             true,
                             true,
                             false)
                     .addCriterion(
-                            "has_boomerang",
-                            InventoryChangeTrigger.TriggerInstance.hasItems(
-                                    ItemPredicate.Builder.item()
-                                            .of(ModItemTags.BOOMERANGS)
-                                            .build()))
+                            "bounce_kill",
+                            BoomerangBounceKillTrigger.TriggerInstance.boomerangBounceKill())
                     .save(
                             saver,
                             ResourceLocation.fromNamespaceAndPath(
-                                    ModSpartanWeaponry.ID, "boomerang"),
+                                    ModSpartanWeaponry.ID, "bounce_kill"),
+                            existingFileHelper);
+            Advancement.Builder.advancement()
+                    .parent(boomerangs)
+                    .display(
+                            ModItems.BOOMERANGS.wood.get(),
+                            Component.translatable(
+                                    "advancement." + ModSpartanWeaponry.ID + ".return_kill.title"),
+                            Component.translatable(
+                                    "advancement." + ModSpartanWeaponry.ID + ".return_kill.desc"),
+                            null,
+                            AdvancementType.TASK,
+                            true,
+                            true,
+                            false)
+                    .addCriterion(
+                            "return_kill",
+                            BoomerangReturnKillTrigger.TriggerInstance.boomerangReturnKill())
+                    .save(
+                            saver,
+                            ResourceLocation.fromNamespaceAndPath(
+                                    ModSpartanWeaponry.ID, "return_kill"),
                             existingFileHelper);
             Advancement.Builder.advancement()
                     .parent(root)

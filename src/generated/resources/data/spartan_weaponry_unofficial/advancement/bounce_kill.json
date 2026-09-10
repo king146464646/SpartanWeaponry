@@ -1,0 +1,26 @@
+{
+	"parent": "spartan_weaponry_unofficial:boomerang",
+	"criteria": {
+		"bounce_kill": {
+			"trigger": "spartan_weaponry_unofficial:boomerang_bounce_kill"
+		}
+	},
+	"display": {
+		"description": {
+			"translate": "advancement.spartan_weaponry_unofficial.bounce_kill.desc"
+		},
+		"icon": {
+			"count": 1,
+			"id": "spartan_weaponry_unofficial:boomerang_wooden"
+		},
+		"title": {
+			"translate": "advancement.spartan_weaponry_unofficial.bounce_kill.title"
+		}
+	},
+	"requirements": [
+		[
+			"bounce_kill"
+		]
+	],
+	"sends_telemetry_event": true
+}
