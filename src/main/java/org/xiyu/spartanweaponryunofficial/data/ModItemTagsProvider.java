@@ -466,23 +466,17 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 
         // Minecraft 1.21+ enchantment compatibility tags
         // Melee weapons - can receive sword enchantments (Sharpness, Smite, Bane of Arthropods,
-        // etc.)
+        // Knockback, Looting, Sweeping Edge, Fire Aspect)
         this.addTagReferences(ENCHANTABLE_SWORD, MELEE_WEAPON_TAGS);
-
-        // Throwing weapons - also receive sword enchantments for melee use
-        this.addTagReferences(ENCHANTABLE_SWORD, THROWING_WEAPON_TAGS);
 
         // Sharp weapon enchantments (Sharpness, Smite, Bane of Arthropods)
         this.addTagReferences(ENCHANTABLE_SHARP_WEAPON, MELEE_WEAPON_TAGS);
-        this.addTagReferences(ENCHANTABLE_SHARP_WEAPON, THROWING_WEAPON_TAGS);
 
         // Fire Aspect has its own vanilla tag in 1.21+
         this.addTagReferences(ENCHANTABLE_FIRE_ASPECT, MELEE_WEAPON_TAGS);
-        this.addTagReferences(ENCHANTABLE_FIRE_ASPECT, THROWING_WEAPON_TAGS);
 
         // Weapon enchantments (Knockback, Looting)
         this.addTagReferences(ENCHANTABLE_WEAPON, MELEE_WEAPON_TAGS);
-        this.addTagReferences(ENCHANTABLE_WEAPON, THROWING_WEAPON_TAGS);
 
         // Durability enchantments (Unbreaking, Mending)
         this.addTagReferences(ENCHANTABLE_DURABILITY, PRIMARY_MELEE_WEAPON_TAGS);
@@ -502,9 +496,6 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 
         // Crossbow enchantments (Quick Charge, Multishot, Piercing)
         this.tag(ENCHANTABLE_CROSSBOW).addTag(ModItemTags.HEAVY_CROSSBOWS);
-
-        // Trident enchantments (Loyalty, Riptide, Channeling, Impaling) - for throwing weapons
-        this.tag(ENCHANTABLE_TRIDENT).addTags(ModItemTags.JAVELINS);
 
         // Mining enchantments (Efficiency) - for battleaxes (axe-like tool)
         this.tag(ENCHANTABLE_MINING).addTag(ModItemTags.BATTLEAXES);
