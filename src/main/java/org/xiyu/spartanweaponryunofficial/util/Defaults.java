@@ -105,8 +105,7 @@ public class Defaults {
     public static final float MeleeSpeedThrowingKnife = 2.5f;
     public static final float DamageBaseThrowingKnife = 1.5f;
     public static final float DamageMultiplierThrowingKnife = 1.0f;
-    public static final int ChargeTicksThrowingKnife =
-            15; // Increased from 5 for more noticeable charge effect
+    public static final int ChargeTicksThrowingKnife = 5;
 
     // Tomahawk
     public static final float MeleeSpeedTomahawk = 0.9f;

@@ -179,13 +179,6 @@ public class WeaponTraits {
                             new ReachWeaponTrait(TYPE_REACH, SpartanWeaponryAPI.MOD_ID)
                                     .setLevel(1)
                                     .setMagnitude(6.0f));
-    public static final DeferredHolder<WeaponTrait, WeaponTrait> REACH_1_5 =
-            REGISTRY.register(
-                    "reach_1_5",
-                    () ->
-                            new ReachWeaponTrait(TYPE_REACH, SpartanWeaponryAPI.MOD_ID)
-                                    .setLevel(1)
-                                    .setMagnitude(6.5f));
     public static final DeferredHolder<WeaponTrait, WeaponTrait> REACH_2 =
             REGISTRY.register(
                     "reach_2",
@@ -193,13 +186,6 @@ public class WeaponTraits {
                             new ReachWeaponTrait(TYPE_REACH, SpartanWeaponryAPI.MOD_ID)
                                     .setLevel(2)
                                     .setMagnitude(7.0f));
-    public static final DeferredHolder<WeaponTrait, WeaponTrait> REACH_2_5 =
-            REGISTRY.register(
-                    "reach_2_5",
-                    () ->
-                            new ReachWeaponTrait(TYPE_REACH, SpartanWeaponryAPI.MOD_ID)
-                                    .setLevel(2)
-                                    .setMagnitude(7.5f));
     public static final DeferredHolder<WeaponTrait, WeaponTrait> SWEEP_1 =
             REGISTRY.register(
                     "sweep_1",
@@ -220,7 +206,7 @@ public class WeaponTraits {
                     () ->
                             new SweepWeaponTrait(TYPE_SWEEP_DAMAGE, SpartanWeaponryAPI.MOD_ID)
                                     .setLevel(3)
-                                    .setMagnitude(0.75f));
+                                    .setMagnitude(1.0f));
     public static final DeferredHolder<WeaponTrait, WeaponTrait> KNOCKBACK =
             REGISTRY.register(
                     "extra_knockback",
