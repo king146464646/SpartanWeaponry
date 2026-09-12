@@ -39,7 +39,7 @@ import org.jetbrains.annotations.Nullable;
  * @author ObliviousSpartan
  */
 public class OilCoatedItemModel implements IUnbakedGeometry<OilCoatedItemModel> {
-    public static final int COATING_TINT_INDEX = 1;
+    public static final int COATING_TINT_INDEX = 100;
 
     protected ImmutableList<Material> textures;
     protected Material coatingTexture;
@@ -78,9 +78,6 @@ public class OilCoatedItemModel implements IUnbakedGeometry<OilCoatedItemModel> 
         if (this.textures.isEmpty())
             throw new IllegalStateException(
                     "Couldn't resolve Textures for model: " + context.getModelName());
-        // Coating texture is optional - only warn in debug mode, not log an error
-        // if(coatingTexture == null)
-        //     Log.warn("Couldn't resolve Coating textures for model: " + context.getModelName());
 
         TextureAtlasSprite particleSprite =
                 spriteGetter.apply(
@@ -88,7 +85,6 @@ public class OilCoatedItemModel implements IUnbakedGeometry<OilCoatedItemModel> 
                                 ? context.getMaterial("particle")
                                 : this.textures.getFirst());
 
-        // Apply root transformation to the model state if not default
         Transformation transform = context.getRootTransform();
         if (!transform.isIdentity())
             modelState =
@@ -97,7 +93,7 @@ public class OilCoatedItemModel implements IUnbakedGeometry<OilCoatedItemModel> 
         RenderTypeGroup normalRenderTypes =
                 new RenderTypeGroup(RenderType.cutout(), RenderType.cutout());
         RenderTypeGroup coatingRenderTypes =
-                new RenderTypeGroup(RenderType.translucent(), RenderType.translucent());
+                new RenderTypeGroup(RenderType.cutout(), RenderType.cutout());
         OilCoatingItemBakedModel.Builder builder =
                 OilCoatingItemBakedModel.makeBuilder(
                         context, particleSprite, overrides, context.getTransforms());
@@ -117,7 +113,6 @@ public class OilCoatedItemModel implements IUnbakedGeometry<OilCoatedItemModel> 
             builder.addQuads(renderTypes, bakedQuads);
         }
 
-        // Bake the coating quads
         if (this.coatingTexture != null) {
             final int coatingLayer = COATING_TINT_INDEX;
             TextureAtlasSprite sprite = spriteGetter.apply(this.coatingTexture);

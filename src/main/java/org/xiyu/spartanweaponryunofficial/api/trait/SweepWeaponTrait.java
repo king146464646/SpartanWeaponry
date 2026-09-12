@@ -3,6 +3,7 @@ package org.xiyu.spartanweaponryunofficial.api.trait;
 import com.google.common.collect.ImmutableMultimap;
 import java.util.List;
 import java.util.Optional;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.Attribute;
@@ -10,6 +11,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.ItemAbility;
 import org.xiyu.spartanweaponryunofficial.api.SpartanWeaponryAPI;
@@ -68,12 +70,10 @@ public class SweepWeaponTrait extends WeaponTraitWithMagnitude implements IMelee
     }
 
     @Override
-    public boolean isEnchantmentCompatible(Enchantment enchantIn) {
-        // In 1.21, we need to compare using resource location since Enchantments constants are now
-        // ResourceKeys
-        // We can't directly compare Enchantment to ResourceKey, so we match by location
-        return false; // Sweeping edge compatibility is now handled in
-        // SwordBaseItem.canApplyAtEnchantingTable
+    public boolean isEnchantmentCompatible(Holder<Enchantment> enchantIn) {
+        // Sweep I weapons (Longsword, Katana, Saber, Lance) can get Sweeping Edge
+        // Sweep II/III weapons cannot (matching 1.20.1 behavior)
+        return this.level == 1 && enchantIn.is(Enchantments.SWEEPING_EDGE);
     }
 
     @Override

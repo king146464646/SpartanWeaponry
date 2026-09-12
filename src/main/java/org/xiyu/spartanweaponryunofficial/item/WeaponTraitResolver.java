@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import net.minecraft.core.Holder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -34,7 +35,7 @@ final class WeaponTraitResolver {
     }
 
     static Optional<Boolean> getEnchantmentCompatibility(
-            Collection<WeaponTrait> traits, Enchantment enchantment) {
+            Collection<WeaponTrait> traits, Holder<Enchantment> enchantment) {
         for (WeaponTrait trait : traits) {
             if (trait.isEnchantmentIncompatible(enchantment)) return Optional.of(false);
             if (trait.isEnchantmentCompatible(enchantment)) return Optional.of(true);

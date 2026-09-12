@@ -6,6 +6,7 @@ import java.util.Optional;
 import java.util.function.Function;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.resources.language.I18n;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.ComponentUtils;
 import net.minecraft.network.chat.MutableComponent;
@@ -290,22 +291,22 @@ public class WeaponTrait {
     /**
      * Queries if the Enchantment is compatible with the weapon containing this trait
      *
-     * @param enchantIn The enchantment to check
+     * @param enchantIn The enchantment holder to check
      * @return true if the enchantment is compatible with the weapon with this trait, false
      *     otherwise
      */
-    public boolean isEnchantmentCompatible(Enchantment enchantIn) {
+    public boolean isEnchantmentCompatible(Holder<Enchantment> enchantIn) {
         return false;
     }
 
     /**
      * Queries if the Enchantment is incompatible with the weapon containing this trait
      *
-     * @param enchantIn The enchantment to check
+     * @param enchantIn The enchantment holder to check
      * @return true if the enchantment is incompatible with the weapon with this trait, false
      *     otherwise
      */
-    public boolean isEnchantmentIncompatible(Enchantment enchantIn) {
+    public boolean isEnchantmentIncompatible(Holder<Enchantment> enchantIn) {
         return false;
     }
 

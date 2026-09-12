@@ -13,7 +13,8 @@
 		"ZombieMixin",
 		"PiglinMixin",
 		"PiglinBruteMixin",
-		"WitherSkeletonMixin"
+		"WitherSkeletonMixin",
+		"BrewingStandMenuMixin"
 	],
 	"client": [
 		"ItemModelGeneratorMixin"

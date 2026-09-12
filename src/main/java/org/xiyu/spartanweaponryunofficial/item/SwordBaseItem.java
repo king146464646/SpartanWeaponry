@@ -332,7 +332,7 @@ public class SwordBaseItem extends SwordItem
     @Override
     public boolean supportsEnchantment(ItemStack stack, Holder<Enchantment> enchantment) {
         Optional<Boolean> traitCompatibility =
-                WeaponTraitResolver.getEnchantmentCompatibility(this.traits, enchantment.value());
+                WeaponTraitResolver.getEnchantmentCompatibility(this.traits, enchantment);
         if (traitCompatibility.isPresent()) return traitCompatibility.get();
         if (enchantment.is(Enchantments.SWEEPING_EDGE)) return false;
         return stack.is(Items.ENCHANTED_BOOK) || enchantment.value().isSupportedItem(stack);
@@ -341,7 +341,7 @@ public class SwordBaseItem extends SwordItem
     @Override
     public boolean isPrimaryItemFor(ItemStack stack, Holder<Enchantment> enchantment) {
         Optional<Boolean> traitCompatibility =
-                WeaponTraitResolver.getEnchantmentCompatibility(this.traits, enchantment.value());
+                WeaponTraitResolver.getEnchantmentCompatibility(this.traits, enchantment);
         if (traitCompatibility.isPresent()) return traitCompatibility.get();
         if (enchantment.is(Enchantments.SWEEPING_EDGE)) return false;
         Optional<HolderSet<Item>> primaryItems = enchantment.value().definition().primaryItems();

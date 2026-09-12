@@ -2,6 +2,7 @@ package org.xiyu.spartanweaponryunofficial.api.trait;
 
 import java.util.List;
 import net.minecraft.ChatFormatting;
+import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.tags.TagKey;
@@ -58,7 +59,7 @@ public class VersatileWeaponTrait extends WeaponTrait {
     }
 
     @Override
-    public boolean isEnchantmentCompatible(Enchantment enchantIn) {
+    public boolean isEnchantmentCompatible(Holder<Enchantment> enchantIn) {
         // In 1.21, Enchantment is data-driven and isSupportedItem no longer exists
         // Return false as the base behavior, specific enchantment compatibility can be added if
         // needed
