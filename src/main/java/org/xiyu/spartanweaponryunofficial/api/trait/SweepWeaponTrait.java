@@ -71,8 +71,6 @@ public class SweepWeaponTrait extends WeaponTraitWithMagnitude implements IMelee
 
     @Override
     public boolean isEnchantmentCompatible(Holder<Enchantment> enchantIn) {
-        // Sweep I weapons (Longsword, Katana, Saber, Lance) can get Sweeping Edge
-        // Sweep II/III weapons cannot (matching 1.20.1 behavior)
         return this.level == 1 && enchantIn.is(Enchantments.SWEEPING_EDGE);
     }
 

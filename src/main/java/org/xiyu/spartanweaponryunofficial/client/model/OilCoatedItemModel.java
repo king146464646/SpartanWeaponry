@@ -85,6 +85,7 @@ public class OilCoatedItemModel implements IUnbakedGeometry<OilCoatedItemModel> 
                                 ? context.getMaterial("particle")
                                 : this.textures.getFirst());
 
+        // Apply root transformation to the model state if not default
         Transformation transform = context.getRootTransform();
         if (!transform.isIdentity())
             modelState =
@@ -113,6 +114,7 @@ public class OilCoatedItemModel implements IUnbakedGeometry<OilCoatedItemModel> 
             builder.addQuads(renderTypes, bakedQuads);
         }
 
+        // Bake the coating quads
         if (this.coatingTexture != null) {
             final int coatingLayer = COATING_TINT_INDEX;
             TextureAtlasSprite sprite = spriteGetter.apply(this.coatingTexture);
